@@ -2,14 +2,13 @@
 
 namespace DotnetTaskAPI.Models
 {
-    public class Application
+    public class ApplicationDTO
     {
-        public int Id { get; set; }
         public PersonalInformation PersonalInformation { get; set; }
-        public Profile Profile { get; set; }
+        public Profiles Profile { get; set; }
     }
 
-    public class PersonalInformation
+    public class PersonalInformationDTO
     {
         public int Id { get; set; }
         public string? FirstName { get; set; }
@@ -24,16 +23,15 @@ namespace DotnetTaskAPI.Models
         public ICollection<AdditionalQuestion> AdditionalQuestions { get; set; }
     }
 
-    public class Profile
+    public class ProfileDTO
     {
-        public int Id { get; set; }
         public string? Education { get; set; }
         public string? Experience { get; set; }
         public string? Resume { get; set; }
         public ICollection<AdditionalQuestion> AdditionalQuestions { get; set; }
     }
 
-    public class AdditionalQuestion
+    public class AdditionalQuestionDTO
     {
         public string Question { get; set; }
 

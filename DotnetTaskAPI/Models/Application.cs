@@ -6,7 +6,7 @@ namespace DotnetTaskAPI.Models
     {
         public int Id { get; set; }
         public PersonalInformation PersonalInformation { get; set; }
-        public Profile Profile { get; set; }
+        public Profiles Profile { get; set; }
     }
 
     public class PersonalInformation
@@ -24,7 +24,7 @@ namespace DotnetTaskAPI.Models
         public ICollection<AdditionalQuestion> AdditionalQuestions { get; set; }
     }
 
-    public class Profile
+    public class Profiles
     {
         public int Id { get; set; }
         public string? Education { get; set; }

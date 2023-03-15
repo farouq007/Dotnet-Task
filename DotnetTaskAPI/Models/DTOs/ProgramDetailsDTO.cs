@@ -2,10 +2,8 @@
 
 namespace DotnetTaskAPI.Models
 {
-    public class ProgramDetails
+    public class ProgramDetailsDTO
     {
-        public int Id { get; set; }
-
         [Required, MaxLength(50)]
         public string Title { get; set; }
 
@@ -21,7 +19,7 @@ namespace DotnetTaskAPI.Models
         public string? ApplicationCriteria { get; set; }
 
         [Required]
-        public ProgramTypes ProgramType { get; set; }
+        public string ProgramType { get; set; }
 
         public DateTime? ProgramStartDate { get; set; }
 
@@ -38,24 +36,5 @@ namespace DotnetTaskAPI.Models
 
         public string? MinimumQualification { get; set; }
         public int? MaximumNoOfApplication { get; set; }
-    }
-
-    public class Location
-    {
-        public string Address { get; set; }
-        public bool FullyRemote { get; set; }
-    }
-
-    public enum ProgramTypes
-    {
-        FullTime = 1,
-        PartTime
-    }
-
-    public enum QualificationTypes
-    {
-        Highschool = 1,
-        Degree,
-        Masters
     }
 }
