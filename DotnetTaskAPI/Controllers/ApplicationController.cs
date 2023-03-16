@@ -8,43 +8,39 @@ namespace DotnetTaskAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProgramController : ControllerBase
+    public class ApplicationController : ControllerBase
     {
+        private readonly IApplicationService _applicationService;
         private readonly IProgramService _programService;
 
-        public ProgramController(IProgramService programService)
+        public ApplicationController(IApplicationService applicationService, IProgramService programService)
         {
+            _applicationService = applicationService;
             _programService = programService;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAsync()
-        {
-            var result = await _programService.GetAllAsync();
-            if (result.Status == _Constants._FAILED_) return BadRequest(result);
-            return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            var result = await _programService.GetByIdAsync(id);
+            var result = await _applicationService.GetByIdAsync(id);
             if (result.Status == _Constants._FAILED_) return BadRequest(result);
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(ProgramDetailsDTO program)
+        public async Task<IActionResult> Post(ApplicationDTO application)
         {
-            var result = await _programService.AddAsync(program);
+            var program = await _programService.GetByIdAsync(application.ProgramId);
+            if (program.Status == _Constants._FAILED_) return BadRequest("The Program you're trying to add an application for does not exist");
+            var result = await _applicationService.AddAsync(application);
             if (result.Status == _Constants._FAILED_) return BadRequest(result);
             return Ok(result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit([FromBody] ProgramDetails program)
+        public async Task<IActionResult> Edit([FromBody] Application application)
         {
-            var result = await _programService.UpdateAsync(program.Id, program);
+            var result = await _applicationService.UpdateAsync(application.Id, application);
             if (result.Status == _Constants._FAILED_) return BadRequest(result);
             return Ok(result);
         }
@@ -52,7 +48,7 @@ namespace DotnetTaskAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var result = await _programService.DeleteAsync(id);
+            var result = await _applicationService.DeleteAsync(id);
             if (result.Status == _Constants._FAILED_) return BadRequest(result);
             return Ok(result);
         }

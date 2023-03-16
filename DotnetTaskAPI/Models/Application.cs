@@ -1,17 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace DotnetTaskAPI.Models
 {
     public class Application
     {
-        public int Id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("programId")]
+        public string ProgramId { get; set; }
+
+        [JsonProperty("personalInformation")]
         public PersonalInformation PersonalInformation { get; set; }
+
+        [JsonProperty("profile")]
         public Profiles Profile { get; set; }
     }
 
     public class PersonalInformation
     {
-        public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Email { get; set; }
@@ -26,7 +34,6 @@ namespace DotnetTaskAPI.Models
 
     public class Profiles
     {
-        public int Id { get; set; }
         public string? Education { get; set; }
         public string? Experience { get; set; }
         public string? Resume { get; set; }

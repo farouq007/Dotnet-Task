@@ -74,7 +74,7 @@ namespace DotnetTaskAPI.Services.Concrete
             try
             {
                 var response = await _cosmosContainer.ReadItemAsync<ProgramDetails>(id, new PartitionKey(id));
-                return new GenericResponse { Data = response.Resource, Description = "Items retrieved successfully", Status = _Constants._SUCCESS_ };
+                return new GenericResponse { Data = response.Resource, Description = "Program retrieved successfully", Status = _Constants._SUCCESS_ };
             }
             catch (Exception ex)
             {

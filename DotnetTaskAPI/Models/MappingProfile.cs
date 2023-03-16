@@ -7,6 +7,8 @@ namespace DotnetTaskAPI.Models
         public MappingProfile()
         {
             CreateMap<ProgramDetails, ProgramDetailsDTO>().ReverseMap();
+            CreateMap<Workflow, WorkflowDTO>().ReverseMap();
+            CreateMap<Application, ApplicationDTO>().ReverseMap();
         }
     }
 }

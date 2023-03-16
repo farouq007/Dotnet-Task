@@ -1,50 +1,48 @@
 ﻿using DotnetTaskAPI.Models;
 using DotnetTaskAPI.Services.Abstract;
+using DotnetTaskAPI.Services.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos.Serialization.HybridRow;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DotnetTaskAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProgramController : ControllerBase
+    public class WorkflowController : ControllerBase
     {
+        private readonly IWorkflowService _workflow;
         private readonly IProgramService _programService;
 
-        public ProgramController(IProgramService programService)
+        public WorkflowController(IWorkflowService WorkflowService, IProgramService programService)
         {
+            _workflow = WorkflowService;
             _programService = programService;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAsync()
-        {
-            var result = await _programService.GetAllAsync();
-            if (result.Status == _Constants._FAILED_) return BadRequest(result);
-            return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            var result = await _programService.GetByIdAsync(id);
+            var result = await _workflow.GetByIdAsync(id);
             if (result.Status == _Constants._FAILED_) return BadRequest(result);
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(ProgramDetailsDTO program)
+        public async Task<IActionResult> Post(WorkflowDTO Workflow)
         {
-            var result = await _programService.AddAsync(program);
+            var program = await _programService.GetByIdAsync(Workflow.ProgramId);
+            if (program.Status == _Constants._FAILED_) return BadRequest("The Program you're trying to add an application for does not exist");
+            var result = await _workflow.AddAsync(Workflow);
             if (result.Status == _Constants._FAILED_) return BadRequest(result);
             return Ok(result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit([FromBody] ProgramDetails program)
+        public async Task<IActionResult> Edit([FromBody] Workflow Workflow)
         {
-            var result = await _programService.UpdateAsync(program.Id, program);
+            var result = await _workflow.UpdateAsync(Workflow.Id, Workflow);
             if (result.Status == _Constants._FAILED_) return BadRequest(result);
             return Ok(result);
         }
@@ -52,7 +50,7 @@ namespace DotnetTaskAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var result = await _programService.DeleteAsync(id);
+            var result = await _workflow.DeleteAsync(id);
             if (result.Status == _Constants._FAILED_) return BadRequest(result);
             return Ok(result);
         }
