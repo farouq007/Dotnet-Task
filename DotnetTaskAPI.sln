@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetTaskAPI", "DotnetTaskAPI\DotnetTaskAPI.csproj", "{ECDC5CFF-BA81-48BF-A854-F04257950843}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetTaskTest", "DotnetTaskTest\DotnetTaskTest.csproj", "{751D2A65-CB2D-4C0A-B40D-2416FA65B39E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{ECDC5CFF-BA81-48BF-A854-F04257950843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECDC5CFF-BA81-48BF-A854-F04257950843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECDC5CFF-BA81-48BF-A854-F04257950843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{751D2A65-CB2D-4C0A-B40D-2416FA65B39E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{751D2A65-CB2D-4C0A-B40D-2416FA65B39E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{751D2A65-CB2D-4C0A-B40D-2416FA65B39E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{751D2A65-CB2D-4C0A-B40D-2416FA65B39E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

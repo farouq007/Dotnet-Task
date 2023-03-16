@@ -16,7 +16,7 @@ namespace DotnetTaskAPI.Services.Concrete
             {
                 throw new ArgumentNullException(nameof(cosmosClient));
             }
-            _cosmosContainer = cosmosClient.GetContainer("DotnetTaskDB", "Applications"); ;
+            _cosmosContainer = cosmosClient.GetContainer("DotnetTaskDB", "Applications");
             _mapper = mapper;
         }
 
